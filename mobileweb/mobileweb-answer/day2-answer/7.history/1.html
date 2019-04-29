@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History API</title>
+</head>
+<body>
+<ul id="list"></ul>
+<div id="nav">
+	<a href="#page=1">1</a> | <a href="#page=2">2</a> | <a href="#page=3">3</a>
+</div>
+<script>
+	const data = [
+		[
+			{"text":"안녕하세요.", "href":"http://naver1.com"},
+			{"text":"반갑습니다.", "href":"http://naver2.com"},
+			{"text":"또 만나요.", "href":"http://naver3.com"}
+		],
+		[
+			{"text":"안녕하세요2.", "href":"http://naver4.com"},
+			{"text":"반갑습니다2.", "href":"http://naver5.com"},
+			{"text":"또 만나요2.", "href":"http://naver6.com"}
+		],
+		[
+			{"text":"안녕하세요3.", "href":"http://naver7.com"},
+			{"text":"반갑습니다3.", "href":"http://naver8.com"},
+			{"text":"또 만나요3.", "href":"http://naver9.com"}
+		]
+	];
+
+	function makeList(data) {
+		if (data) {
+			var html = data.map(function(d) {
+				return "<li><a href='"+ d.href +"'>"+ d.text +"</a></li>";
+			});
+			
+			document.querySelector("#list").innerHTML = html.join("");
+		}
+	}
+
+	(function() {
+		const page = location.hash.replace("#page=", "") || 1;
+
+		makeList(data[page - 1]);	
+	})();
+
+	// @todo
+	// 1) hashchange 이벤트를 window에 바인딩 한다.
+	//    - 리스너 함수에서 location.hash에 '#page=번호'일 때 '번호'의 값을 구한다.
+	//    - data에 해당 page에 맞는 데이터를 makeList에 넣고 렌더링 한다.
+	//
+	// 2) click 이벤트를 body에 바인딩 한다.
+	//    - 클릭된 페이지 번호를 location.hash 값으로 할당해 hashchange 이벤트를 trigger 한다.
+	// 	  - 클릭은 페이지 번호 <a>에 대해서만 반응해야 한다.
+	window.addEventListener("hashchange", e => { 
+		const page = location.hash.replace("#page=", "") || 1;
+
+		makeList(data[page-1]);
+	}, false); 
+
+	document.body.addEventListener("click", e => {
+		const target = e.target;
+
+		if (target.tagName === "A" && !/http/.test(target.getAttribute("href"))) {
+			location.hash = target.getAttribute("href");
+		}
+
+		e.preventDefault();
+	});
+</script>
+</body>
+</html>

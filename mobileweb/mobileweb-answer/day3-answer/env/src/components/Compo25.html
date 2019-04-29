@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>React</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+</head>
+<body>
+
+<div id="app"></div>
+<script type="text/babel">
+const Button = styled.button`
+    ffont-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid palevioletred;
+    border-radius: 3px;
+    background-color: ${props => props.bg || "white"};
+`;
+
+const Anchor = styled(Button)`
+    border: none;
+    text-decoration: underline;
+`
+
+class Compo25 extends React.Component {
+    render() {
+        return <div>
+                <Button>버튼 1</Button>
+                <Button bg="red">버튼 1</Button>
+                <Anchor href="#">링크 입니다.</Anchor>
+            </div>;
+    };
+}
+    
+ReactDOM.render(<Compo25 />, document.getElementById("app"));
+</script>
+</body>
+</html>

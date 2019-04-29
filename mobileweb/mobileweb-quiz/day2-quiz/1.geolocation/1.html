@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GeoLocation</title>
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<link href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" rel="stylesheet"/>
+<style>
+button {
+	position: relative;
+	z-index: 2;
+	font-size: 20px;
+}
+
+#map {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	top: 50px;
+}
+</style>
+<script>
+let map;
+
+function showMap(latitude, longitude) {
+	// Create Leaflet map on map element.
+	if (!map) {
+		map = L.map(document.getElementById("map"));
+	}
+
+	// Add OSM tile leayer to the Leaflet map.
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+
+	// Target's GPS coordinates.
+	const target = L.latLng(latitude, longitude);
+
+	// Set map's center to target with zoom 14.
+	map.setView(target, 14);
+
+	// Place a marker on the same location.
+	L.marker(target).addTo(map);
+}
+
+function getGeo() {
+	// @todo
+	// 현재 위치 정보를 얻는 코드를 작성해 봅니다.
+	// ('chrome://flags/#unsafely-treat-insecure-origin-as-secure' 설정이 필요합니다.)
+	// 위도와 경도 값을 showMap() 함수에 전달해 호출 합니다.
+}
+</script>
+</head>
+<body>
+	<button onclick="getGeo()">Show Map</button>
+	<div id="map" style="height:600px"></div>
+</body>
+</html>

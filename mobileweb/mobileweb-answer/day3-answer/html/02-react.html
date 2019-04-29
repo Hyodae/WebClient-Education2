@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>React</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <style>
+        .container {
+            font-size: 30px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+// VDOM 설명할때 사용
+const root = document.getElementById("root");
+
+function tick() {
+    const time = new Date().toTimeString();
+    const element = <div>현재시간: {time}</div>;
+
+    ReactDOM.render(element, root);
+}
+
+setInterval(tick, 1000);
+</script>
+</body>
+</html>

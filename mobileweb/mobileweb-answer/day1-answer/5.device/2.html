@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>Event Test</title>
+<style>
+#touch{
+    height: 180px;
+    background-color: green;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    padding-top: 120px;
+}
+
+#log {
+    overflow: scroll;
+    height: 200px;
+}
+
+#log span{
+    color : blue;
+    font-weight:bold;
+    margin-left:10px; 
+}
+
+button {
+    background-color: #ccc;
+}
+</style>
+</head>
+<body>
+<ul id="log"></ul>
+<button id="anchor">click</button>
+<input type="text">
+<div id="touch">Touch</div>
+<script>
+	var beforeType;
+	function log(e) {
+		var log = document.querySelector("#log");
+
+		if (beforeType === e.type){
+			// 직전 이벤트가 같은 이벤트 타입인 경우, 이벤트 발생 숫자를 증가하는 코드도 같이 작성하세요.
+			var ele = document.querySelector("#log li:first-child span");
+			ele.innerText = parseInt(ele.innerText, 10) + 1; 
+		} else {
+			log.innerHTML = "<li>"+ e.type +"<span>1</span></li>" + log.innerHTML;
+		}
+
+		beforeType = e.type;
+		//e.preventDefault();
+	}
+
+	// TODO :
+	// 1. touch id 요소에 "touchstart", "touchmove", "touchend", "mouseover", "mousemove", "mousedown", "mouseup", "mouseout", "click" 이벤트를 바인딩 합니다.
+	// 2. window 객체에 scroll 이벤트를 바인딩 합니다.
+	// 3. anchor id 요소에 "touchstart", "touchmove", "touchend", "mouseover", "mousemove", "mousedown", "mouseup", "mouseout", "click" 이벤트를 바인딩 합니다.
+	var el = document.querySelector("#touch");
+	var el2 = document.querySelector("#anchor");
+
+var eventList = [
+	"touchstart", "touchmove", "touchend", "mouseover", "mousemove", "mousedown", "mouseup", "mouseout", "click"
+];
+
+eventList.forEach(function(v) {
+  el.addEventListener(v, log, false);
+  el2.addEventListener(v, log, false);
+});
+		
+window.addEventListener("scroll", log);
+</script>
+</body>
+</html>

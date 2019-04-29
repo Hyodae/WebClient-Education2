@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script>
+			function Animal(name){
+				this.name = name;
+			}
+
+			Animal.prototype.getName = function() {
+				return this.name;
+			}
+
+			Animal.prototype.bark = function() {
+				console.log("bark");
+			}
+
+
+			function Dog(name) {
+				this.name = name;
+			}
+
+			Dog.prototype = new Animal();
+			Dog.prototype.constructor = Dog;
+
+			Dog.prototype.bark = function() {
+				console.log("bowwow");
+			}
+
+			var dog = new Dog("dog");
+
+			/*
+				TODO : Animal 클래스를 상속받는 Cat 클래스를 만들고,
+					    인스턴스를 생성해 cat에 할당한다.
+					    cat.getName() 실행시 인스턴스 생성시 전달하는 값을 출력하도록 한다.
+					    cat.bark() 실행시 "mewow"라고 출력되도록 한다.
+			*/
+
+			function Cat(name) {
+				this.name = name;
+			}
+
+			Cat.prototype = new Animal();
+			Cat.prototype.constructor = Cat;
+			Cat.prototype.bark = function() {
+				console.log("mewow");
+			}
+
+			var cat = new Cat("nabi");
+			cat.getName();
+			cat.bark();
+		</script>
+	</body>
+</html>

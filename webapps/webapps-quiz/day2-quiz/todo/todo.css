@@ -1,0 +1,82 @@
+*{
+	font-family: 'Malgun Gothic', gulim, sans-serif;
+}
+
+body{
+	background-color: #EDC877;
+}
+
+h1{
+	color:#583A38;
+}
+
+#wrap{
+	width: 600px;
+	margin:50px auto;
+}
+
+#write {
+	border : 1px solid #383840;
+	text-align : center;
+	-webkit-border-top-left-radius:10px;
+	-webkit-border-top-right-radius:10px;
+	background-color : #8EA55D;
+}
+
+#write textarea{
+	width: 400px;
+	height: 40px;
+	color: #FFFFFF;
+	border: 1px solid #383840;
+	background: none;
+	margin-top: 20px;
+	overflow: hidden;
+}
+#write input[type=submit] {
+    padding: 15px;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+	background-color:#87ABC5;
+	font-weight: bold;
+	position:relative;
+	bottom : 18px;
+}
+#todolist{
+	padding : 0px;
+	margin : 0px;
+	border : 1px solid #383840;
+	background-color : #DD955A;
+	color : #583A38;
+}
+#todolist li{
+	list-style:none;
+	border-bottom : 1px solid #383840;
+	padding:10px;
+}
+#todolist .del{
+	opacity: 0;
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 1s;
+	-webkit-transition-timing-function: ease;
+}
+
+.blind{
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	border: 0;
+	background: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+::-webkit-input-placeholder  { 
+	color:#FFFFFF; 
+	text-align:center;
+	padding : 10px;
+}

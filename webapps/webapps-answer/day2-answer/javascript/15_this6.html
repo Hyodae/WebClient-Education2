@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<div id="id" style="width:100px;height:100px;background-color:red;">
+		<script type="text/javascript">
+			setTimeout(function() {
+				 console.log(this);
+			},10);
+
+			document.getElementById("id").addEventListener("click", function() {
+				console.log(this);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style>
+			ul{
+				width : 200px;
+			}
+			.odd{
+				background-color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="parent">
+			<li class="odd">1</li> 
+			<li>2</li> 
+			<li class="odd">3</li> 
+			<li>4</li> 
+		</ul> 
+
+		<script type="text/javascript">
+			function normal() {
+				var aOdd = document.querySelectorAll(".odd");
+
+				for(var i = 0, l = aOdd.length; i < l ;i++) {
+					aOdd[i].addEventListener("click",function() {
+						alert("click");
+					});
+				} 
+			}
+
+			function delegate() {
+				var ul = document.getElementById("parent");
+
+				ul.addEventListener("click",function(e) {
+					if(e.target.classList.contains("odd")) {
+						alert("click");
+					}
+				});
+			}
+		</script>
+
+	</body>
+</html>

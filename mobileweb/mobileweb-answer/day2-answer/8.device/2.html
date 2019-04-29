@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devicemotion</title>
+<style>
+	.logo {
+		width: 200px;
+		height: 200px;
+		margin: 10px auto;
+		display: block;
+		padding:15px;
+	}
+	
+	.container{
+		/* https://developer.mozilla.org/en-US/docs/Web/CSS/perspective */
+		-webkit-perspective:300;
+		perspective:300;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+	<img src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" id="imgLogo" class="logo">
+</div>
+<ul id="log"></ul>
+
+<script>
+function deviceOrientationHandler(tiltLR, tiltFB) {
+		document.getElementById("log").innerHTML = `<li>좌/우: ${Math.round(tiltLR)}</li>
+			<li>상/하: ${Math.round(tiltFB)}</li>`;
+    
+    document.getElementById("imgLogo").style.transform = `rotate(${tiltLR}deg) rotate3d(1, 0, 0, ${tiltFB * -1}deg)`;
+}
+
+window.addEventListener("devicemotion", function(e) {
+	const acceleration = e.accelerationIncludingGravity;
+	let facingUp = -1;
+
+	if (acceleration.z > 0) {
+		facingUp = +1;
+	}
+                      
+	const tiltLR = Math.round(((acceleration.x) / 9.81) * -90);
+	const tiltFB = Math.round(((acceleration.y) / 9.81) * 90 * facingUp);
+ 
+	deviceOrientationHandler(tiltLR, tiltFB);
+}, false);
+</script>
+</body>
+</html>

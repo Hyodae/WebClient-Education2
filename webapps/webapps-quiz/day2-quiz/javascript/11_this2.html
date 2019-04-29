@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var foo = {
+				x: 10
+			};
+
+			var bar = {
+				x: 20,
+				test: function() {
+					alert(this === bar);
+					alert(this.x); 
+
+					// this에는 값을 할당할 수 없기 때문에 아래 코드는 오류가 발생된다.
+					this = foo;
+					alert(this.x); 
+				} 
+			};
+
+			bar.test(); 
+			foo.test = bar.test; 
+			foo.test();
+		</script>
+	</body>
+</html>

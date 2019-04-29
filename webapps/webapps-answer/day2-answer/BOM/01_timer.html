@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function bind(fp, scope) {
+				if(fp.bind) {  // bind가 native하게 지원되는 경우는 native bind() 함수를 사용한다.
+					return fp.bind(scope);
+				} else {
+					return function() {
+						fp.call(scope);
+					}
+				}
+			}
+
+			var Animation = {
+				"count": 0,
+				"start": function() {
+					this.timerId = setInterval(bind(this.change, this), 10);
+				},
+				'change': function() {
+					if(this.count >= 10) {
+						clearInterval(this.timerId);
+					} else {
+						this.count++;
+						console.log(this.count);
+					}
+				}
+			};
+
+			Animation.start();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title>webapp</title>
+        <script src="./dist/webapp.bundle.js"></script>
+        <style>
+            #button {
+                margin-top: 50px;
+                max-width: 600px;
+            }
+
+            #button button {
+                font-size: 15px;
+                margin: 5px;
+                padding: 5px;
+                border-radius: 10px;
+                background-color: #86f5e6;
+            }
+
+            #button button:nth-child(even) {
+                background-color: red;
+                color: #fff;
+            }
+
+            #info button {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>ES6 실습</h1>
+
+        <div id="info">
+            <p>
+                arrowFunc2 버튼을 클릭 후, 아래 버튼을 클릭해 보세요.<br>
+                <button>이벤트 정보 출력하기</button>
+            </p>
+        </div>
+
+        <div id="button"></div>
+        <script>
+            (function() {
+                var btn = document.querySelector("#button");
+                var html = "";
+
+                for (var x in demo) {
+                    html += "<button onclick='demo."+ x +"()'>"+ x +" 테스트!</button> ";
+                }
+
+                btn.innerHTML = html;
+            })();
+        </script>
+    </body>
+</html>

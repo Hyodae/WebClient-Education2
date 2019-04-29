@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screen</title>
+<style>
+	#info span {
+        font-weight: bold;
+        color: #000;
+    }
+
+    #info {
+        color: red;
+    }
+</style>
+</head>
+<body>
+<h1>screen 정보</h1>
+<ul id="info"></ul>
+<script>
+function makeHTML(key, obj) {
+    return "<li><span>"+ key +":</span> "+ obj[key] +"</li>";
+}
+
+/**
+ * @todo
+ * screen 정보를 출력하는 showInfo() 함수를 작성하세요.
+ * a) screen 객체의 속성에서 'orientation' 항목을 제외하고, 모든 객체나 함수 등은 출력하지 않아야 합니다.
+ * b) 화면을 회전시 해당 정보가 업데이트 되어야 합니다.
+ */
+function showInfo() {
+         
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+		function for_statement() {
+			var arr = [1,2,3];
+
+			for(var i = 0 , l = arr.length; i < l; i++){
+				console.log(arr[i]);
+			}
+		}
+		
+		function in_statement() {
+			var obj = {
+				"a" : 1,
+				"b" : 2
+			}
+
+			for(var i in obj) {
+				console.log(obj[i]);
+			}
+		}
+
+		function with_statement() {
+			var obj = {
+				"a" : 1,
+				"b" : 2
+			}
+			
+			var a = "a";
+			var b = "b";
+
+			with(obj) {
+				console.log(a);
+				console.log(b);
+			}
+		}
+		</script>
+	</body>
+</html>

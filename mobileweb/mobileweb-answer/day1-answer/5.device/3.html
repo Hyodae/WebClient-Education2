@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>Dimmed Test</title>
+<style>
+body {
+    position: relative;
+    background-color: #f1f2f3;
+}
+
+#layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content_area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 305px;
+    height: 429px;
+    margin: -239px 0 0 -152px;
+    background-size: 100% auto;
+    background-color: #31b901;
+    color: #fff;
+	z-index: 1;
+	text-align: center;
+}
+
+.dimmed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.4;
+}
+</style>
+</head>
+<body>
+<div id="layer">
+	<div class="content_area">
+		<div>
+			<h1>알립니다.</h1>
+			<p>
+				안내 메세지 레이어 입니다.<br><br>
+				안내 레이어를 닫기 전까지는<br>
+				서비스를 사용할 수 없습니다.
+			</p>
+
+			<button>닫기</button>
+		</div>
+	</div>
+	<div class="dimmed"></div>
+</div>
+<div id="content">
+	<h1>What is Lorem Ipsum?</h1>
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+	<p>
+		Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+		when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+	</p>
+	<p>
+		It has survived not only five centuries, but also the leap into electronic typesetting,
+		remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+		sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+		Aldus PageMaker including versions of Lorem Ipsum.
+	</p>
+	
+	<h1>Why do we use it?</h1>
+	<p>
+		It is a long established fact that a reader will be distracted by the readable content of a page
+	when looking at its layout.
+	</p>
+	<p>
+		The point of using Lorem Ipsum is that it has a more-or-less normal 
+		distribution of letters, as opposed to using 'Content here, content here', making it look like readable 
+		English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default 
+		model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.<br>
+		Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
+		(injected humour and the like).
+	</p>
+</div>
+<script>
+	// passive 이벤트 지원여부 확인
+	var supportsPassive = false;
+
+	try {
+		var opts = Object.defineProperty({}, 'passive', {
+			get: function() {
+				supportsPassive = true;
+			}
+		});
+		window.addEventListener("testPassive", null, opts);
+		window.removeEventListener("testPassive", null, opts);
+	} catch (e) {}
+
+	// TODO:
+	// 1) .dimmed 클래스 요소를 dimmed 되도록 스타일을 설정한다.
+	// 2) <button>을 클릭하면, closeLayer() 함수를 호출해 dimmed 상태에서 해제되게 한다.
+	// 3) dimmed 상태일 때, 문서가 스크롤 되지 않게 처리한다.
+	var handler = function(e) {
+		e.preventDefault();
+
+		if (e.target.tagName == "BUTTON") {
+			closeLayer();
+		}
+	}
+
+	function closeLayer() {
+		document.querySelector("#layer").style.display = "none";
+		document.body.removeEventListener("touchstart", handler);
+	}
+
+
+	var supportsPassive = false;
+	try {
+	var opts = Object.defineProperty({}, 'passive', {
+		get: function() {
+		supportsPassive = true;
+		}
+	});
+	window.addEventListener("testPassive", null, opts);
+	window.removeEventListener("testPassive", null, opts);
+	} catch (e) {}
+
+
+	// 문서가 스크롤 되는 것을 막는다.
+	document.body.addEventListener("touchstart", handler, supportsPassive ? {passive: false} : false);
+</script>
+</body>
+</html>

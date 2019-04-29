@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+
+* { margin: 0; padding: 0; }
+
+#nav { width: 400px; margin: 40px auto; }
+
+#nav li {
+ 	list-style-type:none;
+	font-size:2em;
+}
+
+#nav li a {
+	background-image:url('sample.gif');
+	background-repeat:no-repeat;
+	padding: 0 0 0 90px;
+	display: block;
+	height: 72px;
+}
+
+#nav li a.item1 {background-position:0px 0px; }
+#nav li a:hover.item1 { } /* TODO : background-position을 x:0px,  y:-72px 로 설정 */
+
+#nav li a.item2 {background-position:0px -143px;}
+#nav li a:hover.item2 { } /* TODO : background-position을 x:0px,  y:-215px 로 설정 */
+
+#nav li a.item3 {background-position:0px -287px;}
+#nav li a:hover.item3 { } /* TODO : background-position을 x:0px,  y:-359px 로 설정 */
+
+#nav li a.item4 {background-position:0px -431px;}
+#nav li a:hover.item4 { } /* TODO : background-position을 x:0px,  y:-503px 로 설정 */
+
+#nav li a.item5 {background-position:0px -575px;}
+#nav li a:hover.item5 { } /* TODO : background-position을 x:0px,  y:-647px 로 설정 */
+
+</style>
+</head>
+<body>
+ <ul id="nav"> 
+    	<li><a class="item1" href="#" title="Some Link 1">Item 1</a></li>
+    	<li><a class="item2" href="#" title="Some Link 2">Item 2</a></li>
+    	<li><a class="item3" href="#" title="Some Link 3">Item 3</a></li>
+    	<li><a class="item4" href="#" title="Some Link 4">Item 4</a></li>
+    	<li><a class="item5" href="#" title="Some Link 5">Item 5</a></li>
+    </ul>
+</body>
+</html>

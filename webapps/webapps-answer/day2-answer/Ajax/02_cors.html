@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<button onclick=cors("http://localhost:3000/cors")>XHR(CORS) 요청하기 #1</button>
+		<button onclick=cors("https://m.naver.com/include/news/newsSeries.json")>XHR(CORS) 요청하기 #2</button>
+		<button onclick=cors("http://localhost:3000/cors2")>XHR(CORS) 요청하기 #3</button>
+
+		<script>
+			var req = new XMLHttpRequest();
+
+			req.addEventListener("load", function() {
+				console.log(req.responseText);
+			}, false);  
+
+			req.addEventListener("error", function() {
+				console.log("fail");
+			}, false);
+
+			function cors(url) {
+				req.open("POST", url);
+				req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+				req.setRequestHeader("X-Test", "one");
+				req.withCredentials = "true"; // for cookie
+				req.send("key1=value1&key2=value2");
+			}
+		</script>
+	</body>
+</html>

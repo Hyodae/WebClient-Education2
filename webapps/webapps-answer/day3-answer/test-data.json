@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "device": "Tablet" },
+    { "device": "SmartWatch" },
+    { "device": "SmartPhone" },
+    { "device": "AI Speaker" },
+    { "device": "Home IOT" }
+  ]
+}

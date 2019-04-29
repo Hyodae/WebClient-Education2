@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibrate API</title>
+<style>
+	input {
+		width: 300px;
+		border: solid 1px;
+		height: 27px;
+	}
+
+	button {
+		font-size: 1.3em;
+		background-color: #eee;
+		margin-top: 10px;
+	}
+</style>
+</head>
+<body>
+<h1>Vibrate API</h1>
+
+<h3>진동시간을 입력해 보세요!</h3>
+<input type="text" style="width:300px" placeholder="ms 값을 입력하세요. 콤마로 입력하면, 패턴으로 처리됩니다." /><br>
+<button onclick="vibrate()">Vibrate!</button>
+<script>
+	/**
+	 * @todo
+	 * virate() 함수에서 <input> 입력값을 전달해서 vibration 되도록 해보세요.
+	 * - 입력값이 콤마로 입력된 경우, vibration pattern 으로 처리 되도록 하세요.
+	 */
+	function vibrate() {
+		var ms = document.querySelector("input")
+			.value
+			.replace(/\s/g, "")
+			.split(",")
+			.map(function(v) {
+				return parseInt(v);
+			});
+
+		navigator.vibrate(ms);
+	}
+	</script>
+</body>
+</html>

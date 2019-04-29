@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>React</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+    <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
+    <style>
+      
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+// AJAX using Axios
+class UserCompany extends React.Component {
+  state = {company: undefined, loaded: false};
+
+  fetchCompany = () => {
+    axios({
+      url: "https://api.github.com/graphql",
+      method: "post",
+      data: {
+        query: `{
+          user(login: "${this.props.username}") {
+            company
+          }
+        }`,
+      },
+      headers: {
+        Authorization: `bearer I DELETED THE TOKEN. YOU"LL HAVE TO MAKE YOUR OWN`,
+      }
+    }).then(
+      response => {
+        this.setState({
+          loaded: true,
+          company: response.data.data.user.company
+        })
+      },
+      error => {
+        this.setState({error, loaded: true});
+      },
+    )
+  }
+
+  componentDidMount() {
+    this.fetchCompany()
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.username !== this.props.username) {
+      this.fetchCompany()
+    }
+  }
+
+  render() {
+    return this.state.loaded
+      ? this.state.error
+        ? "ERROR (You probably need to add your own token)"
+        : this.state.company || "Unknown"
+      : "..."
+  }
+}
+
+class App extends React.Component {
+  state = {username: undefined};
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.setState({
+      username: this.inputNode.value,
+    })
+  }
+
+  render() {
+    const {username} = this.state;
+
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+            <input ref={node => (this.inputNode = node)} />
+        </form>
+        {username ? (<UserCompany username={username} />) : null}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+</script>
+</body>
+</html>

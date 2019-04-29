@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <title>list 목록</title>
+        <style>
+            .done {
+                text-decoration: line-through;
+            }
+        </style>
+        <link type="text/css" rel="stylesheet" href="./todo.css" />
+        <script src="./todo.js"></script>
+    </head>
+    <body>
+        <div id="wrap">
+            <h1>TODO</h1>
+            <div id="write">
+                <form id="createTodo" action="/create" onsubmit="TODO.add(event);">
+                    <textarea name="todo"  cols="70" rows="10" id="todo" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="할일을 입력하세요."></textarea>
+                    <input type="submit" value="추가"/>
+                </form>
+            </div>
+            <ul id="todolist">
+                <li>
+                    <label for="todo1" class="blind">완료</label>
+                    <input type="checkbox" id="todo1" value="todo1"/>
+                    <span>청소 하기.</span>
+                </li>
+                <li>
+                    <label for="todo2" class="blind">완료</label>
+                    <input type="checkbox" id="todo2" value="todo2"/>
+                    빨래 하기.
+                </li>
+                <li>
+                    <label for="todo3" class="blind">완료</label>
+                    <input type="checkbox" id="todo3" value="todo3"/>
+                    숙제하기
+                </li>
+                <li>
+                    <label for="todo4" class="blind">완료</label>
+                    <input type="checkbox" id="todo4" value="todo4"/>
+                    문서 작성하기
+                </li>
+                <li>
+                    <label for="todo5" class="blind">완료</label>
+                    <input type="checkbox" id="todo5" value="todo5"/>
+                    병원가기
+                </li>
+                <li>
+                    <label for="todo6" class="blind">완료</label>
+                    <input type="checkbox" id="todo6" value="todo6"/>
+                    세금내기
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

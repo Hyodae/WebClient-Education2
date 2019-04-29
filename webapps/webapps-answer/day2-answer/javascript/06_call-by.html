@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				TODO :
+				psy.song의 값을 변경하는 함수를 작성한다.
+				psy.song;  <-- "챔피언"
+
+				change(psy, "강남 스타일");
+				psy.song;  <-- "강남 스타일"
+			*/
+
+			var psy = { song : "챔피언" };
+			console.log(psy.song);
+
+			function change(obj, val) {
+				obj.song = val;
+			}
+
+			change(psy, "강남 스타일");
+			console.log(psy.song);
+		</script>
+	</body>
+</html>

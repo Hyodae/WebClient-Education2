@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<ul id="test"></ul>
+
+		<script type="text/javascript">
+			function createElement(tag) {
+				return document.createElement(tag);
+			}
+
+			function appendChild() {
+				var ele = createElement("li");
+				ele.innerText = "1";
+				document.getElementById("test").appendChild(ele);
+			}
+
+			function innerHTML() {
+				document.getElementById("test").innerHTML = "<li>2</li><li>3</li>";
+			}
+
+			function insertAdjacentHTML() {
+				document.getElementById("test").insertAdjacentHTML("beforeend","<li>2</li><li>3</li>");
+			}
+		</script>
+	</body>
+</html>

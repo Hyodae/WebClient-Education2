@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<div id="layer">
+			<ul class="portal"> 
+			   <li class="item">
+				  <a href="#">daum</a>
+			   </li>
+			   <li class="item">
+				  <a href="#">nate</a>
+			   </li>
+			   <li class="item">
+				   <a href="#">nhn</a>
+				   <ul class="sub"> 
+					  <li>
+						 <a href="#">naver</a>
+					  </li> 
+					  <li>
+						 <a href="#">hangame</a>
+					  </li> 
+				   </ul>
+			   </li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			/*
+				TODO :
+				1. layer id를 갖는 요소를 찾고, border 속성을 1px solid red로 지정한다.
+				2. 첫 번째 li 태그 요소를 찾고, border 속성을 1px solid green으로 지정한다.
+				3. 모든 a 태그 요소를 찾고, 각각의 요소의 font-weight 속성을 bold로 지정한다.
+			*/
+
+			document.getElementById("layer").style.border = "1px solid red";
+			document.querySelector("li").style.border = "1px solid green";
+			
+
+			var element = document.querySelectorAll("a");
+			for(var i=0; i<element.length; i++) {
+				element[i].style.fontWeight = "bold";
+			}
+		</script>
+	</body>
+</html>

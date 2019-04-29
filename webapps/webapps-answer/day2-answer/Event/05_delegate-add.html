@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style>
+			ul{
+				width : 200px;
+			}
+			.odd{
+				background-color:red;
+			}
+		</style>
+	</head>
+	<body>
+
+		<input type="button" id="add" name="add" value="add"/>
+
+		<ul id="parent">
+			<li class="odd">1</li> 
+			<li>2</li> 
+			<li class="odd">3</li> 
+			<li>4</li> 
+		</ul> 
+
+		
+
+		<script type="text/javascript">
+			function delegate() {
+				var ul = document.getElementById("parent");
+				ul.addEventListener("click",function(e){
+					if(e.target.classList.contains("odd")){
+						alert("click");
+					}
+				});
+			}
+
+			delegate();
+			var count = 4;
+			document.getElementById("add").addEventListener("click",function() {
+				var li = document.createElement("li");
+				count++;
+				li.innerText = count;
+				if(count%2){
+					li.classList.add("odd");
+				}
+				document.getElementById("parent").appendChild(li);
+			});
+		</script>
+
+	</body>
+</html>

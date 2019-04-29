@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>실습</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <script src="../node_modules/redux/dist/redux.js"></script>
+</head>
+
+<body>
+  <h3>
+    Redux 사용하기 실습
+    <a href="https://redux.js.org/" target="_blank">https://redux.js.org/</a>
+  </h3>
+  <div id="controller">
+    <button class="increase">increase</button>
+    <button class="decrease">decrease</button>
+    <button class="reset">reset</button>
+  </div>
+  <script type="text/javascript">
+    // TODO:
+    // 1. Action 만들기 (INCREASE, DECREASE, RESET)
+
+    // 2. Action Creator 함수 만들기 
+    // step을 인자로 받는 increase => step 만큼 값이 증가한다.
+    // step을 인자로 받는 decrease => step 만큼 값이 감소한다.
+    // 인자를 받지 않는 reset => 값이 0으로 초기화된다.
+
+    // 3. Reducer 만들기 (counter)
+    // number 값을 변경시키는 reducer 만들기
+    // 주의. action 후에도 number외의 state가 유지되도록 구성하기 
+    // - Object.assign 사용하기
+    // - object spread operator
+    function counter(state = {
+      number: 0,
+      name: "sclove-warren"
+    }, action) {}
+
+    // 4. Store 만들기
+    const store;
+
+    // 5. store subscribe 하여 state 값 확인하기.
+    const unsubscribe;
+
+    // 6. increase, decrease, reset 액션 button click시 각각의 Action 연결하기
+    document.getElementById("controller").addEventListener("click", event => {
+      const {
+        classList
+      } = event.target;
+      if (classList.contains("increase")) {
+        // increase
+      } else if (classList.contains("decrease")) {
+        // decrease
+      } else if (classList.contains("reset")) {
+        // reset
+      }
+    });
+
+    // 추가. store subscribe 제거하고 Redux devtool 연결하기
+  </script>
+</body>
+
+</html>

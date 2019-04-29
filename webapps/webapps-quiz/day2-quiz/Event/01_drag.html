@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style>
+			#test{
+				width : 100px;
+				height: 100px;
+				background-color:blue;
+				position : absolute;
+				cursor : move;
+			}
+			#test.selected{
+				border : 3px solid red;
+				background-color:yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test"></div>
+		<script type="text/javascript">
+			
+			function $(id){
+				return document.getElementById(id);
+			}
+			var Drag = {
+				"start":function(id){
+					this.ele = $(id);
+					this.ele.addEventListener("mousedown",this.mousedown.bind(this));
+				},
+				"mousedown":function(e){
+					this.ele.classList.add("selected");
+					this.fpmousemove = this.mousemove.bind(this);
+					this.fpmouseup = this.mouseup.bind(this);
+					this.layerX = e.layerX;
+					this.layerY = e.layerY;
+
+					document.addEventListener("mousemove",this.fpmousemove);
+					document.addEventListener("mouseup",this.fpmouseup);
+				},
+				"mousemove" : function(e){
+					this.ele.style.left = (e.clientX-this.layerX)+"px";
+					this.ele.style.top = (e.clientY-this.layerY)+"px";
+				},
+				"mouseup" : function(){
+					this.ele.classList.remove("selected");
+
+					document.removeEventListener("mousemove",this.fpmousemove);
+					document.removeEventListener("mouseup",this.fpmouseup);
+				}
+			}
+
+			Drag.start("test");
+		</script>
+
+	</body>
+</html>

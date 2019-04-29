@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>viewport</title>
+<!--
+    @todo
+    1) 기기의 너비값에 맞는 meta 태그를 추가해 봅니다.
+    <meta name="viewport" content="width=device-width"><title>viewport2</title>
+
+    2) 초기 배율을 조정하는 meta 태그를 작성해 봅니다.
+    <meta name="viewport" content="initial-scale=1.5">
+
+    3) 초기 배율 1, 최소/최대 비율을 1로 지정한 meta 태그를 추가해 봅니다.
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+
+    4) 초기 배율 1, 최소/최대 비율을 1, 사용자가 스케일을 변경하지 못하는 meta 태그를 추가해 봅니다.
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1;user-scalable=no">
+-->
+<style>
+body {
+    margin:0;
+}
+
+#content{
+    width : calc(100% - 20px);
+    background-color: green;
+    padding: 10px;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<div id="content">
+    <h1 id="width"></h1>
+    <h1 id="height"></h1>
+</div>
+<script>
+	document.querySelector("#width").innerHTML = "width:"+ window.innerWidth +"px";
+    document.querySelector("#height").innerHTML = "height:"+ window.innerHeight +"px";
+</script>
+</body>
+</html>

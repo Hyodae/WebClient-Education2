@@ -1,0 +1,15 @@
+{
+  "short_name": "My Test App",
+  "name": "Mobile Web Application Test App",
+  "icons": [
+    {
+      "src": "https://github.githubassets.com/images/icons/emoji/unicode/1f603.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "2.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#2196F3"
+}

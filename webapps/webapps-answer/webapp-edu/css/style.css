@@ -1,0 +1,84 @@
+html,
+body {
+  width: 100%;
+  height: 100%
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+input,
+button {
+  font-family: '돋움', dotum, Helvetica, sans-serif;
+  color: #383d41
+}
+
+li {
+  list-style: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+li,
+p,
+div,
+dt,
+dd {
+  margin: 0px;
+  padding: 0px;
+}
+
+.star_rating,
+.star_rating span {
+  display: inline-block;
+  overflow: hidden;
+  height: 14px;
+  height: 14px;
+  background: transparent url(http://nuli.navercorp.com/data/ui_library/src/pattern/etc/jcm/star_rating/img/ico_star.gif) no-repeat
+}
+
+.star_rating {
+  width: 79px;
+  vertical-align: middle
+}
+
+.star_rating span {
+  background-position: 0 -14px;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -100px;
+  *text-indent: 0;
+  vertical-align: top
+}
+
+button.primary {
+  font-size: 1.1em;
+  line-height: 1.3em;
+  margin: 10px 10px;
+  width: calc(100% - 20px);
+  border-color: #666;
+  background-color: rgb(227, 226, 226);
+}
+
+form button.primary {
+  font-size: 1.1em;
+  line-height: 1.3em;
+  margin: 0px;
+  width: 100%;
+  border-color: #666;
+  background-color: rgb(227, 226, 226);
+}
+
+h2.title {
+  border-left: 10px solid rgb(52, 161, 15);
+  margin-left: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+}

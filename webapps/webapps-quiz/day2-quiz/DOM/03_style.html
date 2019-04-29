@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style>
+			#test{
+				width : 100px;
+				height: 100px;
+				background-color:blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test"></div>
+
+		<script type="text/javascript">
+			/*
+				TODO :
+				1. setStyle() 함수를 만들고, 파라미터로 요소의 레퍼런스를 전달한다.
+				2. 전달되는 요소의 width 값을 200px, 그리고 배경색을 red로 설정한다.
+
+				3. setStyle2() 함수를 만들고, 파라미터로 요소와 스타일 문자열 2개의 파라미터를 전달받는다.
+				4. 전달된 요소의 cssText를 전달된 스타일 문자열의 값으로 할당한다.
+			*/
+
+			function getComputedStyle(ele,style){
+				return document.defaultView.getComputedStyle(ele,null).getPropertyValue(style);
+			}
+
+			function getStyle(ele,style){
+				return ele.style[style];
+			}
+		</script>
+	</body>
+</html>

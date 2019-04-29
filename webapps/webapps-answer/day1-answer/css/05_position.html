@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+#static {
+	width : 100px;
+	height : 100px;
+	background-color:red;
+}
+
+#wrap {
+	width : 200px;
+	height : 200px;
+	background-color:red;
+	left:100px;
+	top:100px;
+}
+
+
+#relative {
+	width : 100px;
+	height : 100px;
+	background-color:black;
+	left:50px;
+	top:50px;
+
+	/* TODO : position을 relative로 지정하세요. */
+	position:relative;
+}
+
+#absolute {
+	width : 100px;
+	height : 100px;
+	background-color:blue;
+	top:10px;
+	left:10px;
+
+	/* TODO : position을 absolute로 지정하세요. */
+	position:absolute;
+}
+
+#fixed{
+	width : 100px;
+	height : 100px;
+	background-color:yellow;
+
+	/* TODO : position을 fixed로 지정하세요. */
+	position:fixed;
+}
+
+#test {
+	width : 100px;
+	height : 1000px;
+	background-color:gray;
+}
+</style>
+</head>
+<body>
+	<div id="static">1</div>
+	<div id="wrap">
+		<div id="relative">2</div>
+		<div id="absolute">3</div>
+	</div>
+	<div id="fixed">4</div>
+	<div id="test"></div>
+</body>
+</html>

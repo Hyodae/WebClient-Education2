@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+#wrap{
+	margin : 20px auto;
+	width:400px;
+}
+
+#wrap div {
+	width:100px;
+	height : 100px;
+	background-color:red;
+	margin : 10px;
+}
+
+.transition {
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 2s;
+	transition-delay : 1s;
+	transition-timing-function: ease;
+}
+
+.transform{
+	transition: transform 2s ease-in-out;
+	transform: scale(1.5);
+}
+
+
+@keyframes ani {
+ from { 
+    opacity: 1.0;
+    height: 100px;
+    transform: scale(1);
+  }
+ to {
+    opacity: 0;
+    height: 200px;
+    transform: scale(1.5);
+  }
+}
+
+.animation{
+   animation-name: ani ;
+   animation-duration: 2s;
+   animation-iteration-count: 4;
+   animation-timing-function: ease;
+   animation-direction: alternate;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="transition">transition</div> <a href="#" onclick="document.getElementById('transition').className=''">click</a>
+		<div id="transform">transform</div> <a href="#" onclick="document.getElementById('transform').className=''">click</a>
+		<div id="animation">animation</div> <a href="#" onclick="document.getElementById('animation').className=''">click</a>
+	</div>
+</body>
+</html>

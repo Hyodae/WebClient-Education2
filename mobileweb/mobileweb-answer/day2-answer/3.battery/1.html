@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battery Status API</title>
+<style>
+#info li {
+	font-weight: bold;
+	padding: 5px;
+}
+
+#info li span {
+	color: red;
+	font-weight: normal;
+}
+</style>
+</head>
+<body>
+<h1>배터리 정보</h1>
+<div id="info">
+	<ul>
+		<li>충전상태: <span></span></li>
+		<li>충전까지 남은 시간: <span></span></li>
+		<li>남은 배터리 시간:  <span></span></li>
+		<li>충전 상태 레벨: <span></span></li>
+	</ul>
+</div>
+<script>
+	/*
+		TODO : 배터리 정보를 출력하라.
+		- 전원 상태가 변경될 때마다 정보가 출력되도록 이벤트를 바인딩 하세요.
+	*/
+	var battery;
+	var info = document.querySelector("#info");
+
+	function showInfo(b) {
+		if ("charging" in b) {
+			battery = b;
+		}
+
+		info.querySelector("li:nth-child(1) span").innerHTML = battery.charging ? "충전 중" : "충전 중이지 않음";
+		info.querySelector("li:nth-child(2) span").innerHTML = battery.chargingTime === Infinity ? "n/a" : (battery.chargingTime +"sec");
+		info.querySelector("li:nth-child(3) span").innerHTML = battery.dischargingTime === Infinity ? "전원연결" : (battery.dischargingTime +"sec");
+		info.querySelector("li:nth-child(4) span").innerHTML = (battery.level * 100) + "%";
+	}
+
+	if ("getBattery" in navigator) {
+		navigator.getBattery().then(function(b) {
+			showInfo(b);
+
+			// todo: 충전 상태 및 레벨 변경 이벤트 바인딩
+			b.addEventListener("chargingchange", showInfo);
+			b.addEventListener("levelchange", showInfo);
+		});
+	} else if (navigator.battery) {
+		showInfo(navigator.battery);
+	} else {
+		info.innerHTML = "<li>Battery Status API를 지원하지 않습니다.</li>";
+	}
+	</script>
+</body>
+</html>

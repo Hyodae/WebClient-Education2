@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>실습</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		canvas {
+			border: solid 1px black;
+		}
+
+		img {
+			border: solid 1px red;
+		}
+
+		button {
+			position: fixed;
+			right: 0;
+			top: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas" width="200" height="200"></canvas>
+	<button onclick="exportToImage()">이미지로 저장</button>
+	<script type="text/javascript">
+		// 코드 작성 
+		// 1. 200x200 캔버스 작성
+		// 2. 캔버스 전체를 노란색으로 채운다.
+		// 3. 획의 색상을 파란색으로 설정한다.
+		// 4. 선의 굵기를 3으로 설정한다.
+		// 5. 다음의 정보를 활용하여 path를 그린다.
+		// Step2. 이미지로 저장버튼을 누르면 exportToImage를 호출하여 이미지에 canvas의 내용을 저장한다.
+		/*
+			arc(100,100,50,0,Math.PI*2,true);
+			moveTo(135,100);  
+			arc(100,100,35,0,Math.PI,false);  
+			moveTo(80,85);
+			arc(75,85,5,0,Math.PI*2,true);
+			moveTo(130,85);  
+			arc(125,85,5,0,Math.PI*2,true);
+		*/
+		const canvas = document.getElementById("canvas");
+		const ctx = canvas.getContext("2d");
+
+		ctx.fillStyle = "yellow";
+		ctx.fillRect(0, 0, 200, 200);
+
+		ctx.strokeStyle = "blue";
+
+		ctx.lineWidth = 3;
+
+		ctx.beginPath();
+		ctx.arc(100, 100, 50, 0, Math.PI * 2, true); // Outer circle  
+		ctx.moveTo(135, 100);
+		ctx.arc(100, 100, 35, 0, Math.PI, false); // Mouth (clockwise)  
+		ctx.moveTo(80, 85);
+		ctx.arc(75, 85, 5, 0, Math.PI * 2, true); // Left eye  
+		ctx.moveTo(130, 85);
+		ctx.arc(125, 85, 5, 0, Math.PI * 2, true); // Right eye  
+		ctx.stroke();
+
+		// Step 2
+		function exportToImage() {
+			const image = canvas.toDataURL();
+
+			const img = document.createElement("img");
+			img.src = image;
+			document.body.appendChild(img);
+		}
+	</script>
+</body>
+
+</html>

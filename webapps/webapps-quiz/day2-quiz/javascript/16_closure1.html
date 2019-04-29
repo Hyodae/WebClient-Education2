@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var z = 10;
+			function foo() {
+				 console.log(z);
+			}
+
+			foo(); // 10 – with using both static and dynamic scope
+
+			(function () {
+				  var z = 20;
+				  foo(); // 10 – with static scope, 20 – with dynamic scope
+			})();
+
+			(function (funArg) {
+				  var z = 30;
+				  funArg(); // 10 – with static scope, 30 – with dynamic scope
+			})(foo);
+		</script>
+	</body>
+</html>

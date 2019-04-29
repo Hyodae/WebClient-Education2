@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>Event Test</title>
+<style>
+		#touch{
+		height : 100px;
+		background-color:green;
+	}
+	
+	#log {
+		overflow: scroll;
+		height: 300px;
+		border: solid 1px;
+	}
+	
+	#log span{
+		color : blue;
+		font-weight:bold;
+		margin-left:10px;
+	}
+	
+	.circle{
+		height: 70px;
+		width: 70px;
+		-moz-border-radius: 35px;
+		border-radius: 35px;
+		position: absolute;
+	}
+</style>
+<script>
+	function $(selector, isAll) {
+		return document[isAll ? "querySelectorAll" : "querySelector"](selector);
+	}
+	
+	function addEvent(selector, event, callback) {
+		return (typeof selector == "string" ? $(selector) : selector)
+			.addEventListener(event, callback, {
+				passive: false
+			});
+	}
+</script>
+</head>
+<body>
+<script>
+// TODO :
+// 1) touchstart 이벤트 발생시 <div> 노드를 동적으로 생성해 body에 추가한다.
+// 추가된 노드는 다음의 속성을 갖도록 만든다. (멀티 터치시 터치된 만큼 노드가 추가되어야 한다.)
+// - id: prefix + touch 이벤트의 identifier
+// - class: circle
+// - background-color: getRandomColor()의 값
+//
+// 2) 터치된 상태에서 이동하면, 생성된 노드가 그에 따라 이동되도록 한다.
+// 3) 터치를 떼면, 생성된 모든 노드들은 삭제한다.
+var prefix = "circle-";
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.round(Math.random() * 15)];
+    }
+
+    return color;
+}
+
+function getCenter(el) {
+	var style = window.getComputedStyle(el);
+
+	return {
+		width: parseInt(style.width) / 2,
+        height: parseInt(style.height) / 2
+    }
+}
+
+addEvent(document, "touchstart", function(e) {
+	var touches = e.changedTouches;
+	var touch;
+
+	for (var i = 0; i < touches.length; i++) {
+		touch = touches[i];
+
+		var div = document.createElement("div");
+		div.className = "circle";
+		div.id = prefix + touch.identifier;
+
+		document.body.appendChild(div);
+
+		var rect = getCenter(div);
+
+		div.style.cssText = "background-color:"+ getRandomColor() +";left:"+ (touch.pageX - rect.width) +"px;top:"+ (touch.pageY - rect.height) +"px";
+	};
+
+	e.preventDefault();
+});
+
+addEvent(document, "touchmove", function(e) {
+	var touches = e.changedTouches;
+	var touch;
+	var div;
+	var rect;
+
+	for (var i = 0; i < touches.length; i++) {
+		touch = touches[i];
+
+		div = $("#"+ prefix + touch.identifier);
+		rect = getCenter(div);
+
+		div.style.top = (touch.pageY - rect.height)  +"px";
+		div.style.left = (touch.pageX - rect.width) +"px";
+	};
+
+	e.preventDefault();
+});
+
+addEvent(document, "touchend", function(e) {
+	var touches = e.changedTouches;
+	var touch;
+	var div;
+
+	for (var i = 0; i < touches.length; i++) {
+		touch = touches[i];
+
+		div = $("#"+ prefix + touch.identifier);
+		div.parentNode.removeChild(div);
+	};
+
+	e.preventDefault();
+});
+</script>
+</body>
+</html>

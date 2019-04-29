@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+#wrap{
+	margin : 20px auto;
+	width:400px;
+}
+#wrap div {
+	width:100px;
+	height : 100px;
+	background-color:red;
+	margin : 10px;
+}
+.transition {
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 2s;
+	transition-delay : 1s;
+	transition-timing-function: ease;
+}
+
+.transform{
+	transition: transform 2s ease-in-out;
+	transform: scale(1.5);
+}
+
+@keyframes ani {
+ from { 
+    opacity: 1.0;
+    height: 100px;
+    transform: scale(1);
+  }
+ to {
+    opacity: 0;
+    height: 200px;
+    transform: scale(1.5);
+  }
+}
+
+.animation{
+   animation-name: ani ;
+   animation-duration: 2s;
+   animation-iteration-count: 4;
+   animation-timing-function: ease;
+   animation-direction: alternate;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #CCC;
+    margin: 0 auto;
+    perspective: 400px;
+}
+
+.cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    animation-duration: 5s;
+    animation-name: cube-rotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    line-height: 200px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    opacity: .85;
+    background-image: url('../img/grin.png');
+    background-color: red;
+}
+
+.cube .face.front  {
+    transform: rotateY(  0deg) translateZ(101px);
+}
+
+.cube .face.right  {
+    transform: rotateY( 90deg) translateZ(101px);
+}
+
+.cube .face.back {
+    transform: rotateY(180deg) translateZ(101px);
+}
+
+.cube .face.left   {
+    transform: rotateY(-90deg) translateZ(101px);
+}
+
+.cube .face.top {
+    transform: rotateX( 90deg) translateZ(101px);
+}
+
+.cube .bottom {
+    transform: rotateX(-90deg) translateZ(101px);
+}
+
+@keyframes cube-rotate {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="transition">transition</div> <a href="#" onclick="document.getElementById('transition').className='transition'">click</a>
+		<div id="transform">transform</div> <a href="#" onclick="document.getElementById('transform').className='transform'">click</a>
+		<div id="animation">animation</div> <a href="#" onclick="document.getElementById('animation').className='animation'">click</a>
+	</div>
+
+	<!--<div class="cube">
+		<div class="face front"></div>
+		<div class="face back"></div>
+		<div class="face right"></div>
+		<div class="face left"></div>
+		<div class="face top"></div>
+        <div class="face bottom"></div>
+	</div>-->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>APP 실습</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/register.css">
+  <link rel="stylesheet" type="text/css" href="./css/layer.css">
+  <link rel="stylesheet" type="text/css" href="./css/movie.css">
+</head>
+
+<body>
+  <h2 class="title">영화관람 후기</h2>
+  <button id="registryBtn" class="primary">등록</button>
+  <section>
+    <ul id="list"></ul>
+  </section>
+  <section class="layer">
+    <form id="regForm" class="layer-content">
+      <input type="hidden" name="no" />
+      <div>
+        <label>제목</label><input type="text" name="title" required />
+      </div>
+      <div>
+        <label>평점</label><input type="number" name="star" required value=0 min=0 max=5 />
+      </div>
+      <div>
+        <label>후기</label><textarea rows="20" name="content"></textarea>
+      </div>
+      <div>
+        <label>참고URL</label><input type="text" name="referenceUrl" />
+      </div>
+      <div>
+        <label>이미지</label><input type="file" id="imageInput" />
+        <input type="hidden" id="image" name="image" />
+        <div id="dropArea" class="drop">이곳에 파일을 드롭하세요.</div>
+        <canvas id="preview"></canvas>
+      </div>
+      <div>
+        <button type="button" class="primary" id="submitBtn">전송하기</button>
+      </div>
+    </form>
+    <div class="close">X</div>
+  </section>
+  <section class="layer">
+    <div id="detail" class="layer-content"></div>
+    <div class="close">X</div>
+  </section>
+  <script src="/main.js"></script>
+</body>
+
+</html>

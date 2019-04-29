@@ -1,0 +1,35 @@
+.movie {
+  clear: both;
+  height: 120px;
+}
+
+.movie .image {
+  background-color: cadetblue;
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.movie .image img {
+  width: 100px;
+  height: 100px;
+}
+
+.movie .text {
+  float: left;
+  margin: 10px;
+  width: calc(100% - 150px)
+}
+
+.movie .text .title {
+  font-weight: bold;
+}
+
+.movie .text a {
+  font-size: 8;
+}
+
+#detail img {
+  width: 100%;
+}

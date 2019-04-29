@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>React</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+    <style>
+      
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+// Form handling
+class NameForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.myRef = React.createRef();
+    }
+
+    handleSubmit = event => {
+        // 네이티브 이벤트 객체를 통해 접근하는 경우
+        console.log({target: event.target});
+        console.log(event.target[0].value);
+        
+        // name 속성으로 접근하는 경우
+        console.log(event.target.elements.username.value);
+
+        // ref 속성을 통해 전달한 경우
+        console.log(this.myRef, this.inputNode.current, this.inputNode.value);
+
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label ref={this.myRef}>
+                    Name: <input type="text" name="username" ref={node => {this.inputNode = node}} />
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+        );
+    }
+}
+
+ReactDOM.render(<NameForm />, document.getElementById("root"));
+</script>
+</body>
+</html>

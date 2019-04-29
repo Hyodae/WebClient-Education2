@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <style>
+    li,
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    dt {
+      background-color: black;
+      color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background-color: #e3e3e3;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 10px 0;
+    }
+
+    .color {
+      display: inline-block;
+      width: 40px;
+      height: 13px;
+      margin-left: 5px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>함수형 메소드를 이용하여 코드 개선하기</h1>
+  <h2>개선 전 예제</h2>
+  <ul id="users"></ul>
+  <script>
+    fetch("https://swapi.co/api/people/?format=json").then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        throw new Error("Error");
+      }
+    }).then(jsonData => {
+      document.getElementById("users").innerHTML = process(jsonData);
+    }).catch(e => {
+      console.error(e);
+    });
+
+    // 사용자 정보를 표현하기 위해 HTML을 만드는 함수
+    function makeHtml(user) {
+      return `<li class='card'>
+        <dl>
+          <dt>${user.name} <i class="fa fa-${user.gender}"></i></dt>
+          <dd><span>키 : </span><span>${user.height} cm</span></dd>
+          <dd><span>몸무게: </span><span>${user.mass} kg</span></dd>
+          <dd><span>BROCA 표준체중 : </span><span>${user.broca} kg</span></dd>
+          <dd><span>BROCA 비만도 : ${user.obesityUsingBroca}</span></dd>
+          <dd><span>BMI 표준체중 : </span><span>${user.bmi} kg</span></dd>
+          <dd><span>BMI 비만도 : ${user.obesityUsingBmi}</span></dd>
+        </dl>
+      </li>`;
+    }
+
+    // 표준 체중과 비만도를 계산하는 함수
+    function logic(height, mass, gender) {
+      let broca = (height - (gender === "male" ? 100 : 105)) * 0.9;
+      let bmi = height / 100 * height / 100 * (gender === "male" ? 22 : 21);
+      const obesityUsingBroca = ((mass - broca) / broca * 100).toFixed(2);
+      const obesityUsingBmi = ((mass - bmi) / bmi * 100).toFixed(2);
+      return {
+        broca,
+        bmi,
+        obesityUsingBroca,
+        obesityUsingBmi
+      };
+    }
+
+    // 데이터를 처리하는 함수
+    // TODO: for, if 문을 함수형 함수로 바꿔보세요.
+    function process(people) {
+      const html = [];
+      for (let user of people.results) {
+        if (/male|female/.test(user.gender)) {
+          const result = logic(user.height, user.mass, user.gender);
+          user = { ...user,
+            ...result
+          };
+          html.push(makeHtml(user));
+        }
+      }
+      return html.join("");
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>React</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <style>
+       .box {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+// Context issue
+class Counter extends React.Component {
+    // binding을 매번 해야 하는 귀찮음이 있기 때문에 arrow func으로 처리하는게 간단하다.
+    /* constructor(...args) {
+        super(...args);
+        this.state = {count: 0};
+        this.handleClick = this.handleClick.bind(this);
+    } */
+
+    constructor() {
+        super();
+        this.state = {count: 0};
+    }
+
+    handleClick = () => {
+        this.setState(({count}) => ({
+            count: count + 1
+        }));
+    }
+
+    render() {
+        return (
+            <button onClick={this.handleClick}>
+                {this.state.count}
+            </button>
+        );
+    }
+}
+
+ReactDOM.render(<Counter />, document.getElementById("root"));
+</script>
+</body>
+</html>

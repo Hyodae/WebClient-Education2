@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<!--
+	TODO :
+	1) 홈에 추가된 웹앱을 호출시, 전체 화면으로 시작될 수 있도록 iOS 및 Android <meta> 태그를 설정하세요.
+	2) Manifest 파일을 만들어 추가해 보세요.
+-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- 상태바 외관 변경 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- 메타 테마 색상: Chrome, Firefox OS, Opera -->
+<meta name="theme-color" content="#4285f4">
+
+<link rel="apple-touch-icon" href="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" />
+
+<!-- icon image: https://github.githubassets.com/images/icons/emoji/unicode/1f603.png -->
+<link rel="manifest" href="./manifest.json" />
+<title>Environment Test</title>
+<style>
+	#some{
+		width:100%;
+		height: 1200px;
+		background-color: green;
+	}
+</style>
+</head>
+<body>
+<div id="some"></div>
+</body>
+</html>

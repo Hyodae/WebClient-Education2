@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>실습</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <script src="../node_modules/redux/dist/redux.js"></script>
+  <script src="../node_modules/redux-actions/dist/redux-actions.js"></script>
+</head>
+<style>
+  .async {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+  }
+</style>
+
+<body>
+  <h3>
+    React-thunk status 별 스토어 변경 실습 (promise + middleware로 변경하기)
+    <a href="https://redux.js.org/" target="_blank">https://redux.js.org/</a>
+  </h3>
+  <div id="controller">
+    <button class="increase">Increase Count</button>
+    <button class="decrease">Decrease Count</button>
+    <button class="reset">Reset Count</button><br>
+    <button class="increaseAsync async">Increase Count (after 1sec)</button>
+    <button class="decreaseAsync async">Decrease Count (after 1sec)</button>
+    <button class="resetAsync async">Reset Count (after 1sec)</button>
+  </div>
+  <script type="module">
+    import counterReducer, {
+      increase, decrease, reset,
+      increaseAsync, decreaseAsync, resetAsync
+    } from "./redux-actions-counter/counter-module.js";
+    import asyncMiddleware from "./redux-thunk-with-middleware/asyncMiddleware.js";
+    import ReduxThunk from '../node_modules/redux-thunk/es/index.js';
+    
+    const store = Redux.createStore(
+      Redux.combineReducers({
+        counter: counterReducer
+      }),
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
+        Redux.applyMiddleware(ReduxThunk, asyncMiddleware)
+      )
+    );
+
+    document.getElementById("controller").addEventListener("click", event => {
+      const {
+        classList
+      } = event.target;
+      if (classList.contains("increase")) {
+        store.dispatch(increase(1));
+      } else if (classList.contains("decrease")) {
+        store.dispatch(decrease(1));
+      } else if (classList.contains("reset")) {
+        store.dispatch(reset());
+      } else if (classList.contains("increaseAsync")) {
+        store.dispatch(increaseAsync(1))
+          .then(() => {
+            console.log("increase 완료");
+          })
+          .catch(() => {
+            console.error("increase 실패");
+          });
+      } else if (classList.contains("decreaseAsync")) {
+        store.dispatch(decreaseAsync(1))
+          .then(() => {
+            console.log("decrease 완료");
+          })
+          .catch(() => {
+            console.error("decrease 실패");
+          });
+      } else if (classList.contains("resetAsync")) {
+        store.dispatch(resetAsync())
+          .then(() => {
+            console.log("reset 완료");
+          })
+          .catch(() => {
+            console.error("reset 실패");
+          });
+      }
+    });
+  </script>
+</body>
+
+</html>

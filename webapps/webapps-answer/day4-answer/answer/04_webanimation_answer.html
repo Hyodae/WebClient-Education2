@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>실습</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<style>
+	.box {
+		background-color:green;
+		width:100px;
+		height:100px;
+		left: 0px;
+		top: 0px;
+		position:absolute;
+		border-radius: 10;
+		text-align: center;
+		line-height: 100px;
+		font-size:2em;
+		color: white;
+	}
+.control {
+	margin-top:250px;
+}
+</style>
+
+<body>
+	<div id="box" class="box">box</div>
+	<div id="control" class="control">
+		<button class="play">play()</button>
+		<button class="pause">pause()</button>
+	</div>
+	<script type="text/javascript">
+		// 코드작성
+		//
+		// 1. box가 4초동안 시계방향으로 한바퀴 돌도록 코드를 작성하시오. 
+		//    x,y 좌표가 다음과 같이 변경된다. 
+		//    (0,0), (100px, 0), (100px, 100px), (0, 100px), (0,0)
+		// 2. 애니메이션이 계속 시계방향으로 돌도록 구성한다.
+		// 3. Javascript로 동작상태를 제어하고 상태를 표시해보자.
+		//   - play()
+		//   - pause()
+		const player = document.getElementById("box").animate([{
+				offset: 0,
+				left: 0,
+				top: 0
+			},
+			{
+				offset: 0.25,
+				left: "100px",
+				top: 0
+			},
+			{
+				offset: 0.5,
+				left: "100px",
+				top: "100px"
+			},
+			{
+				offset: 0.75,
+				left: 0,
+				top: "100px",
+			},
+			{
+				offset: 1,
+				left: 0,
+				top: 0,
+			}
+		], 4000);
+		// {
+		// 	duration: 4000,
+		// 	iterations: Infinity
+		// });
+
+		const controler = document.getElementById("control");
+		controler.addEventListener("click", event => {
+			const {
+				classList
+			} = event.target;
+			if (classList.contains("play")) {
+				console.log("play");
+				player.play();
+			} else if (classList.contains("pause")) {
+				console.log("pause");
+				player.pause();
+			}
+		})
+	</script>
+</body>
+
+</html>

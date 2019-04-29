@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animation</title>
+<style>
+	#some{
+		width : 50px;
+		height:50px;
+		background-color:green;
+		position: absolute;
+		top:0px;
+		left:0px;
+	}
+</style>
+</head>
+<body>
+<div id="some"></div>
+<script>
+	var ele = document.querySelector("#some"); 
+	var id = setInterval(function() {
+		// TODO :
+		// #some 요소의 lett 값을 +2을 한 후 "px"을 붙여서 css로 넣는다.
+		// 그리고 left값이 100이면 clearInterval을 이용하여 멈춘다.
+		var left = parseInt(ele.style.left) || 0; 
+
+		ele.style.left = (left + 2) +"px"; 
+
+		if (left == 100) { 
+			clearInterval(id); 
+		} 
+	}, 10); 
+</script>
+</body>
+</html>

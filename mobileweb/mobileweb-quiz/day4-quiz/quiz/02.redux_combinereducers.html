@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>실습</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <script src="../node_modules/redux/dist/redux.js"></script>
+</head>
+
+<body>
+  <h3>
+    Redux 실습 (combineReducers)
+    <a href="https://redux.js.org/" target="_blank">https://redux.js.org/</a>
+  </h3>
+  <div id="controller">
+    <button class="increase">Increase Count</button>
+    <button class="decrease">Decrease Count</button>
+    <button class="reset">Reset Count</button>
+    <button class="push">Push Message</button>
+    <button class="pop">Pop Message</button>
+  </div>
+  <script type="module">
+    import * as counterAction from "./combineReducers/action/counter-action.js";
+    import counterReducer from "./combineReducers/reducer/counter-reducer.js";
+    import * as messagerAction from "./combineReducers/action/messager-action.js";
+    import messagerReducer from "./combineReducers/reducer/messager-reducer.js";
+
+    // TODO: store를 만든다.
+    // counter과 messager의 구조를 갖는 store를 만든다.
+    // redux devtool을 연결한다.
+    const store;
+
+    // TODO: increase, decrease, reset, push, pop 액션 button click시 각각의 Action 연결하기
+    document.getElementById("controller").addEventListener("click", event => {
+      const {
+        classList
+      } = event.target;
+      if (classList.contains("increase")) {
+        // TODO:
+      } else if (classList.contains("decrease")) {
+        // TODO:
+      } else if (classList.contains("reset")) {
+        // TODO:
+      } else if (classList.contains("push")) {
+        // TODO:
+      } else if (classList.contains("pop")) {
+        // TODO:
+      }
+    });
+  </script>
+</body>
+
+</html>

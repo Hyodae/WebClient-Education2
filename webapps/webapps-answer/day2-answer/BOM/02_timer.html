@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style type="text/css">
+			.css3 {
+				opacity: 0;
+				transition-property: opacity;
+				transition-duration: 1s;
+				transition-timing-function: ease;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test" style="width:100px;height:100px;background-color:red;"></div>
+		<script>
+			var Animation = {
+				"run" : function() {
+					this.ele = document.getElementById("test");
+					this.timerId = setInterval(this.change.bind(this),10);
+					this.count = 0;
+				},
+				"change":function() {
+					if(this.count === 100 ) {
+						clearInterval(this.timerId);
+					} else {
+						this.ele.style.opacity = 1-(0.01*this.count);
+						this.count++;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

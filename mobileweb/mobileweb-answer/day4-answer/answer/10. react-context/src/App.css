@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.counter {
+  color: white;
+  font-weight: bold;
+  background-color: #333333;
+  padding: 10px;
+  margin: 10px;
+}
+
+.message {
+  border: 1px solid #333333;
+  margin: 10px;
+  padding: 5px;
+}
+
+.async {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}

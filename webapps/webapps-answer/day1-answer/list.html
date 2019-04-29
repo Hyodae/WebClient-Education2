@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <title>list 목록</title>
+        <style>
+            .done {
+                text-decoration: line-through;
+            }
+        </style>
+        <script>
+            function callAjax(url, callback) {
+	            var req = new XMLHttpRequest();
+
+	            req.addEventListener("load", function() {
+		            callback(req);
+	            }, false);
+
+	            req.open("GET", url);
+	            req.setRequestHeader('X-Test', 'one');
+	            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+	            req.send();
+            }
+
+            function getList() {
+            	callAjax("/list", function(res) {
+		            var rows = JSON.parse(res.responseText);
+		            var tpl = "<li class='${=CLASS}'>${=COMPLETE} ${=IDX}: ${=TODO}</li>";
+		            var html = "";
+
+		            for (var x in rows) {
+		            	var row = rows[x];
+
+		            	html += tpl
+				            .replace(/\${=CLASS}/g, row.complete === 1 ? "done" : "")
+                            .replace(/\${=COMPLETE}/g, row.complete === 1 ? "" : "<input type='checkbox' onclick='done("+ row.idx +")'>")
+				            .replace(/\${=IDX}/g, row.idx)
+				            .replace(/\${=TODO}/g, row.todo);
+                    }
+
+                    document.getElementById("list").innerHTML = html;
+	            });
+            }
+
+            function done(idx) {
+            	callAjax("/done?idx="+ idx, function() {
+		            getList();
+                });
+            }
+
+            getList();
+        </script>
+    </head>
+    <body>
+        <form action="/create" method="post">
+            할일: <input type="text" name="todo" />
+            <input type="submit" value="Submit" />
+        </form>
+
+        <ul id="list"></ul>
+    </body>
+</html>

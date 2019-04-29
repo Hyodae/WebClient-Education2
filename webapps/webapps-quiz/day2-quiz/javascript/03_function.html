@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+	</head>
+	<body>
+		<script>
+			var x = 10;
+			function constr() {
+				  var x = 20;
+				  var y = 30;
+
+				  // 생성된 함수의 this는 window이기 때문에, x, y는 모두 window를 가리킨다.
+				  var bar = new Function('console.log(x); console.log(y);');
+				  bar(); 
+			}
+			constr();
+
+			declare();
+			function declare(){
+				console.log("선언");	
+			}
+
+			define();
+			var define = function define(){
+				console.log("정의");	
+			}
+
+			// 익명함수
+			(function() {
+				var name = "홍길동";
+
+				console.log(name);
+			})();
+		</script>
+	</body>
+</html>

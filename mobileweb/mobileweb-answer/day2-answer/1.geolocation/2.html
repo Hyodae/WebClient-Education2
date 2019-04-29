@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoLocation</title>
+</head>
+<body>
+<ol id="log"></ol>
+<script>
+function log(txt) {
+	document.querySelector("#log").innerHTML += "<li>"+ txt +"</li>";
+}
+
+let i = 0;
+
+// @todo : watchPosition메서드를 사용해 지속적으로 사용자의 위치를 체크하는 코드를 작성한다.
+// 1. 성공 콜백함수에서는 Latitude와 Longitude 값을 log함수로 전달해 출력한다.
+// 2. 5회 호출되면 중단한다.
+const watchId = navigator.geolocation.watchPosition(
+	position => {
+		const {latitude, longitude} = position.coords;
+
+		log(`Lat:${latitude}, Long:${longitude}`);
+
+		if (i++ === 5) {
+			navigator.geolocation.clearWatch(watchId);
+			log("<b>end</b>");
+		}
+	}, 
+	e => alert("error"),
+	{
+		enableHighAccuracy : false,  // 최대한 정확도를 높게 받을 것인지 여부
+		timeout : 500,  // 위치 값을 장치로 부터 받을 때 까지 최대한 대기할 시간
+		maximumAge : 1000  // 캐시된 위치 값을 반환 받아도 되는 최대한의 시간
+	});
+</script>
+</body>
+</html>

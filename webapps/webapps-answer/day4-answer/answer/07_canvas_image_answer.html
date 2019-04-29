@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>실습</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style type="text/css">
+    canvas {
+      border: solid 1px black;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="200" height="200"></canvas>
+
+  <script type="text/javascript">
+    // 코드 작성 
+    // 1. 이미지("./aoa.jpg")를 캔버스에 200x200 크기로 스케일을 설정해 삽입해 본다.
+    // 2. 다음의 값을 활용해 슬라이싱된 이미지를 추가로 삽입한다.
+    //    원본 이미지에서 75x75 크기만큼만 잘라낸다.
+    //    원본 이미지에서 이미지를 슬라이스할 위치 좌표는 x:100, y:0
+    //    삽입될 이미지의 캔버스내 위치 x:150, y:150
+    //    삽입되는 이미지 크기는 50x50
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const img = new Image();
+    img.src = "./aoa.jpg";
+    img.onload = function () {
+      ctx.drawImage(img, 0, 0, 200, 200);
+      ctx.drawImage(img, 100, 0, 75, 75, 150, 150, 50, 50);
+    }
+  </script>
+</body>
+
+</html>
